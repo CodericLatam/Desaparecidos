@@ -1,11 +1,13 @@
 {
-  "name": "@coderic/missing",
+  "name": "@coderic/disappearances",
   "version": "0.0.1",
   "author": {
     "name": "Coderic",
     "email": "coderic@coderic.org",
     "url": "https://codericlatam.github.io"
   },
+  "license": "GPL-3.0-only",
+  "description": "Search and rescue of missing persons",
   "homepage": "https://github.com/CodericLatam/Desaparecidos",
   "scripts": {
     "ng": "ng",
@@ -58,6 +60,5 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
     "typescript": "^5.3.3"
-  },
-  "description": "An Ionic project"
+  }
 }
