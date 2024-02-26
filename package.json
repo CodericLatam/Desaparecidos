@@ -1,8 +1,12 @@
 {
-  "name": "BusquedaRescateApp",
+  "name": "@coderic/missing",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": {
+    "name": "Coderic",
+    "email": "coderic@coderic.org",
+    "url": "https://codericlatam.github.io/Desaparecidos"
+  },
+  "homepage": "https://github.com/CodericLatam/Desaparecidos",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

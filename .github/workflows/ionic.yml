@@ -1,0 +1,57 @@
+name: Testing
+
+on: [push, pull_request]
+concurrency:
+  group: testing
+  cancel-in-progress: true
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+      - name: Install Ionic
+        run: npm install -g @ionic/cli @angular/cli
+      - name: Install app dependencies
+        run: npm install
+      - name: test ci
+        run: npm ci
+      - name: test ng
+        run: ng test --no-watch --no-progress --browsers=ChromeHeadless
+  deploy:
+    name: Deploy
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+      - name: Install Ionic
+        run: npm install -g @ionic/cli @angular/cli
+      - name: Install app dependencies
+        run: npm install
+      - name: Build Ionic App
+        run: ionic build --prod
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./www
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
